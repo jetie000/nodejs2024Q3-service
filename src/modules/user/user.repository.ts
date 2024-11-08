@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { DB } from 'src/common/db';
 import { v4 } from 'uuid';
 import { CreateUserDto } from './dto/create-user.dto';

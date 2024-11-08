@@ -1,5 +1,13 @@
-import { Controller, Delete, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post } from "@nestjs/common";
-import { FavoritesService } from "./favorites.service";
+import {
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  ParseUUIDPipe,
+  Post,
+} from '@nestjs/common';
+import { FavoritesService } from './favorites.service';
 
 @Controller('favs')
 export class FavoritesController {

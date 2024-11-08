@@ -34,7 +34,10 @@ export class UserController {
   }
 
   @Put(':id')
-  async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() changeUserDto: ChangeUserDto) {
+  async update(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() changeUserDto: ChangeUserDto,
+  ) {
     return await this.userService.updateUser(id, changeUserDto);
   }
 

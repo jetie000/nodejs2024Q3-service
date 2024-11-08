@@ -33,7 +33,10 @@ export class AlbumController {
   }
 
   @Put(':id')
-  update(@Param('id', new ParseUUIDPipe()) id: string, @Body() updateAlbumDto: CreateAlbumDto) {
+  update(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() updateAlbumDto: CreateAlbumDto,
+  ) {
     return this.albumService.updateAlbum(id, updateAlbumDto);
   }
 

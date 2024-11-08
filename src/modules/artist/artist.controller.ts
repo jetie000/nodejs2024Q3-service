@@ -33,7 +33,10 @@ export class ArtistController {
   }
 
   @Put(':id')
-  update(@Param('id', new ParseUUIDPipe()) id: string, @Body() updateArtistDto: ArtistDto) {
+  update(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() updateArtistDto: ArtistDto,
+  ) {
     return this.artistService.updateArtist(id, updateArtistDto);
   }
 
