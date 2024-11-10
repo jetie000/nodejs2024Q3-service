@@ -6,7 +6,7 @@ export class CreateAlbumDto {
 
   @ValidateIf((object, value) => value !== null)
   @IsString()
-  artistId: string;
+  artistId: string | null;
 
   @IsNumber()
   year: number;

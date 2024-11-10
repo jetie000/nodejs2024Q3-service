@@ -6,35 +6,35 @@ import { CreateAlbumDto } from './dto/create-album.dto';
 export class AlbumService {
   constructor(private albumRepository: AlbumRepository) {}
 
-  getAll() {
-    return this.albumRepository.getAll();
+  async getAll() {
+    return await this.albumRepository.getAll();
   }
 
-  getAlbum(id: string) {
-    const album = this.albumRepository.getById(id);
+  async getAlbum(id: string) {
+    const album = await this.albumRepository.getById(id);
     if (!album) {
       throw new NotFoundException('Album not found');
     }
     return album;
   }
 
-  createAlbum(createAlbumDto: CreateAlbumDto) {
-    return this.albumRepository.create(createAlbumDto);
+  async createAlbum(createAlbumDto: CreateAlbumDto) {
+    return await this.albumRepository.create(createAlbumDto);
   }
 
-  updateAlbum(id: string, updateAlbumDto: CreateAlbumDto) {
-    const album = this.albumRepository.getById(id);
+  async updateAlbum(id: string, updateAlbumDto: CreateAlbumDto) {
+    const album = await this.albumRepository.getById(id);
     if (!album) {
       throw new NotFoundException('Album not found');
     }
-    return this.albumRepository.update(id, updateAlbumDto);
+    return await this.albumRepository.update(id, updateAlbumDto);
   }
 
-  deleteAlbum(id: string) {
-    const album = this.albumRepository.getById(id);
+  async deleteAlbum(id: string) {
+    const album = await this.albumRepository.getById(id);
     if (!album) {
       throw new NotFoundException('Album not found');
     }
-    this.albumRepository.delete(id);
+    await this.albumRepository.delete(id);
   }
 }

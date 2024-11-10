@@ -6,7 +6,7 @@ export class CreateTrackDto {
 
   @ValidateIf((object, value) => value !== null)
   @IsString()
-  artistId: string;
+  artistId: string | null;
 
   @ValidateIf((object, value) => value !== null)
   @IsString()

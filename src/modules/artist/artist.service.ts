@@ -6,35 +6,35 @@ import { ArtistDto } from './dto/artist.dto';
 export class ArtistService {
   constructor(private artistRepository: ArtistRepository) {}
 
-  getAll() {
+  async getAll() {
     return this.artistRepository.getAll();
   }
 
-  getArtist(id: string) {
-    const artist = this.artistRepository.getById(id);
+  async getArtist(id: string) {
+    const artist = await this.artistRepository.getById(id);
     if (!artist) {
       throw new NotFoundException('Artist not found');
     }
     return artist;
   }
 
-  createArtist(createArtistDto: ArtistDto) {
-    return this.artistRepository.create(createArtistDto);
+  async createArtist(createArtistDto: ArtistDto) {
+    return await this.artistRepository.create(createArtistDto);
   }
 
-  updateArtist(id: string, updateArtistDto: ArtistDto) {
-    const artist = this.artistRepository.getById(id);
+  async updateArtist(id: string, updateArtistDto: ArtistDto) {
+    const artist = await this.artistRepository.getById(id);
     if (!artist) {
       throw new NotFoundException('Artist not found');
     }
-    return this.artistRepository.update(id, updateArtistDto);
+    return await this.artistRepository.update(id, updateArtistDto);
   }
 
-  deleteArtist(id: string) {
-    const artist = this.artistRepository.getById(id);
+  async deleteArtist(id: string) {
+    const artist = await this.artistRepository.getById(id);
     if (!artist) {
       throw new NotFoundException('Artist not found');
     }
-    this.artistRepository.delete(id);
+    await this.artistRepository.delete(id);
   }
 }

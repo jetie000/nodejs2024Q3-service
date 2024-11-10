@@ -14,50 +14,40 @@ datasource db {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
+  id        String @unique
   login     String
   password  String
   version   Int
-  createdAt Int
-  updatedAt Int
+  createdAt BigInt
+  updatedAt BigInt
 }
 
 model Track {
-  id          Int        @id @default(autoincrement())
-  name        String
-  duration    Int
-  album       Album      @relation(fields: [albumId], references: [id])
-  albumId     Int
-  artist      Artist     @relation(fields: [artistId], references: [id])
-  artistId    Int
-  Favorites   Favorites? @relation(fields: [favoritesId], references: [id])
-  favoritesId Int?
+  id         String  @unique
+  name       String
+  duration   Int
+  album      Album?   @relation(fields: [albumId], references: [id], onDelete: SetNull)
+  albumId    String?
+  artist     Artist?  @relation(fields: [artistId], references: [id], onDelete: SetNull)
+  artistId   String?
+  isFavorite Boolean @default(false)
 }
 
 model Artist {
-  id          Int        @id @default(autoincrement())
-  name        String
-  grammy      Boolean
-  Album       Album[]
-  Track       Track[]
-  Favorites   Favorites? @relation(fields: [favoritesId], references: [id])
-  favoritesId Int?
+  id         String  @unique
+  name       String
+  grammy     Boolean
+  Album      Album[]
+  Track      Track[]
+  isFavorite Boolean @default(false)
 }
 
 model Album {
-  id          Int        @id @default(autoincrement())
-  name        String
-  year        Int
-  artist      Artist     @relation(fields: [artistId], references: [id])
-  artistId    Int
-  Track       Track[]
-  Favorites   Favorites? @relation(fields: [favoritesId], references: [id])
-  favoritesId Int?
-}
-
-model Favorites {
-  id      Int      @id @default(autoincrement())
-  tracks  Track[]
-  albums  Album[]
-  artists Artist[]
+  id         String  @unique
+  name       String
+  year       Int
+  artist     Artist?  @relation(fields: [artistId], references: [id], onDelete: SetNull)
+  artistId   String?
+  Track      Track[]
+  isFavorite Boolean @default(false)
 }
