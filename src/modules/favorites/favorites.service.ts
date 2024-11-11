@@ -18,7 +18,7 @@ export class FavoritesService {
     private trackRepository: TrackRepository,
   ) {}
 
-  getFavorites() {
+  async getFavorites() {
     const favoritesIds = this.favoritesRepository.getFavorites();
     return {
       artists: favoritesIds.artists.map((id) =>
@@ -29,7 +29,7 @@ export class FavoritesService {
     };
   }
 
-  addFavorite(type: keyof Favorites, id: string) {
+  async addFavorite(type: keyof Favorites, id: string) {
     const favorite = this[`${type.slice(0, -1)}Repository`].getById(id);
     if (!favorite) {
       throw new UnprocessableEntityException(
@@ -39,7 +39,7 @@ export class FavoritesService {
     this.favoritesRepository.addFavorite(type, id);
   }
 
-  deleteFavorite(type: keyof Favorites, id: string) {
+  async deleteFavorite(type: keyof Favorites, id: string) {
     const isFavorite = Object.values(this.favoritesRepository.getFavorites())
       .flat()
       .some((favorite) => favorite === id);

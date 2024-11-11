@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DB } from 'src/common/db';
 import { v4 } from 'uuid';
-import { CreateAlbumDto } from './dto/create-album.dto';
+import { AlbumDto } from './dto/album.dto';
 import { Album } from 'src/common/interfaces/album.interface';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class AlbumRepository {
     return DB.albums.find((album) => album.id === id);
   }
 
-  create(createAlbumDto: CreateAlbumDto) {
+  create(createAlbumDto: AlbumDto) {
     const id = v4();
     DB.albums.push({
       id,
@@ -25,7 +25,7 @@ export class AlbumRepository {
     return { ...DB.albums.find((album) => album.id === id) };
   }
 
-  update(id: string, updateAlbumDto: CreateAlbumDto) {
+  update(id: string, updateAlbumDto: AlbumDto) {
     let albumUpdating: Album | undefined;
     DB.albums = DB.albums.map((album) => {
       if (album.id === id) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DB } from 'src/common/db';
 import { v4 } from 'uuid';
-import { CreateTrackDto } from './dto/create-track.dto';
+import { TrackDto } from './dto/track.dto';
 import { Track } from 'src/common/interfaces/track.interface';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class TrackRepository {
     return DB.tracks.find((track) => track.id === id);
   }
 
-  create(createTrackDto: CreateTrackDto) {
+  create(createTrackDto: TrackDto) {
     const id = v4();
     DB.tracks.push({
       id,
@@ -26,7 +26,7 @@ export class TrackRepository {
     return { ...DB.tracks.find((track) => track.id === id) };
   }
 
-  update(id: string, updateTrackDto: CreateTrackDto) {
+  update(id: string, updateTrackDto: TrackDto) {
     let trackUpdating: Track | undefined;
     DB.tracks = DB.tracks.map((track) => {
       if (track.id === id) {

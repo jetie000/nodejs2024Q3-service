@@ -6,11 +6,11 @@ import { ArtistDto } from './dto/artist.dto';
 export class ArtistService {
   constructor(private artistRepository: ArtistRepository) {}
 
-  getAll() {
+  async getAll() {
     return this.artistRepository.getAll();
   }
 
-  getArtist(id: string) {
+  async getArtist(id: string) {
     const artist = this.artistRepository.getById(id);
     if (!artist) {
       throw new NotFoundException('Artist not found');
@@ -18,11 +18,11 @@ export class ArtistService {
     return artist;
   }
 
-  createArtist(createArtistDto: ArtistDto) {
+  async createArtist(createArtistDto: ArtistDto) {
     return this.artistRepository.create(createArtistDto);
   }
 
-  updateArtist(id: string, updateArtistDto: ArtistDto) {
+  async updateArtist(id: string, updateArtistDto: ArtistDto) {
     const artist = this.artistRepository.getById(id);
     if (!artist) {
       throw new NotFoundException('Artist not found');
@@ -30,7 +30,7 @@ export class ArtistService {
     return this.artistRepository.update(id, updateArtistDto);
   }
 
-  deleteArtist(id: string) {
+  async deleteArtist(id: string) {
     const artist = this.artistRepository.getById(id);
     if (!artist) {
       throw new NotFoundException('Artist not found');

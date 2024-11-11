@@ -1,6 +1,6 @@
 import { IsNumber, IsString, ValidateIf } from 'class-validator';
 
-export class CreateAlbumDto {
+export class TrackDto {
   @IsString()
   name: string;
 
@@ -8,6 +8,10 @@ export class CreateAlbumDto {
   @IsString()
   artistId: string;
 
+  @ValidateIf((object, value) => value !== null)
+  @IsString()
+  albumId: string | null;
+
   @IsNumber()
-  year: number;
+  duration: number;
 }

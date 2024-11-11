@@ -1,16 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { TrackRepository } from './track.repository';
-import { CreateTrackDto } from './dto/create-track.dto';
+import { TrackDto } from './dto/track.dto';
 
 @Injectable()
 export class TrackService {
   constructor(private trackRepository: TrackRepository) {}
 
-  getAll() {
+  async getAll() {
     return this.trackRepository.getAll();
   }
 
-  getTrack(id: string) {
+  async getTrack(id: string) {
     const track = this.trackRepository.getById(id);
     if (!track) {
       throw new NotFoundException('Track not found');
@@ -18,11 +18,11 @@ export class TrackService {
     return track;
   }
 
-  createTrack(createTrackDto: CreateTrackDto) {
+  async createTrack(createTrackDto: TrackDto) {
     return this.trackRepository.create(createTrackDto);
   }
 
-  updateTrack(id: string, updateTrackDto: CreateTrackDto) {
+  async updateTrack(id: string, updateTrackDto: TrackDto) {
     const track = this.trackRepository.getById(id);
     if (!track) {
       throw new NotFoundException('Track not found');
@@ -30,7 +30,7 @@ export class TrackService {
     return this.trackRepository.update(id, updateTrackDto);
   }
 
-  deleteTrack(id: string) {
+  async deleteTrack(id: string) {
     const track = this.trackRepository.getById(id);
     if (!track) {
       throw new NotFoundException('Track not found');
