@@ -19,14 +19,18 @@ npm install
 
 ## Running application
 
+copy .env.example to .env and choose right DATABASE_URL
+
 ```
 npm start
 ```
 
 OR
 
-Install docker and run 
+Install docker, copy env file and run 
 ```
+cp ./.env.example ./.env
+
 docker-compose up
 ```
 
