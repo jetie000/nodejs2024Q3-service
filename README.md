@@ -19,12 +19,23 @@ npm install
 
 ## Running application
 
+copy .env.example to .env and choose right DATABASE_URL
+
 ```
 npm start
 ```
 
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
+OR
+
+Install docker, copy env file and run 
+```
+cp ./.env.example ./.env
+
+docker-compose up
+```
+
+After starting the app on port (4000 as default, but you can define it in .env file - PORT variable) you can open
+in your browser OpenAPI documentation by typing http://localhost:4000/api/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
 
 ## Testing
